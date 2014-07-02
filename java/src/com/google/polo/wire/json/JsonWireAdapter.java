@@ -56,7 +56,7 @@ public class JsonWireAdapter implements PoloWireInterface {
 
   /**
    * Constructor.
-   * 
+   *
    * @param input the {@link InputStream} from the peer
    * @param output the {@link OutputStream} to the peer
    */
@@ -67,7 +67,7 @@ public class JsonWireAdapter implements PoloWireInterface {
 
   /**
    * Generates a new instance from a {@link PairingContext}.
-   * 
+   *
    * @param context the {@link PairingContext}
    * @return the new instance
    */
@@ -124,13 +124,12 @@ public class JsonWireAdapter implements PoloWireInterface {
       throw new IOException("Error generating message");
     }
 
-    System.out.println("Sending JSON: " + outerJson.toString());
     writeJson(outerJson);
   }
 
   /**
    * Writes a {@link JSONObject} to the output stream as a {@link String}.
-   * 
+   *
    * @param  message      the message to write
    * @throws IOException  on error generating the serialized message
    */

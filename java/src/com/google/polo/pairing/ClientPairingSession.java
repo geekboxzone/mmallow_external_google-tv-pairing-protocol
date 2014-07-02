@@ -66,8 +66,8 @@ public class ClientPairingSession extends PairingSession {
   @Override
   protected void doInitializationPhase()
       throws PoloException, IOException {
-    logDebug("Sending PairingRequest... " + mServiceName);
-    PairingRequestMessage msg = new PairingRequestMessage(mServiceName);
+    logDebug("Sending PairingRequest... " + mServiceName + " " + mClientName);
+    PairingRequestMessage msg = new PairingRequestMessage(mServiceName, mClientName);
     sendMessage(msg);
 
     logDebug("Waiting for PairingRequestAck ...");
@@ -89,8 +89,8 @@ public class ClientPairingSession extends PairingSession {
         PoloMessageType.OPTIONS);
 
     // Compare compatibility with server options, and save config.
-    System.out.println("Local config = " + mLocalOptions);
-    System.out.println("Server options = " + serverOptions);
+    logDebug("Local config = " + mLocalOptions);
+    logDebug("Server options = " + serverOptions);
     setConfiguration(mLocalOptions.getBestConfiguration(serverOptions));
   }
 

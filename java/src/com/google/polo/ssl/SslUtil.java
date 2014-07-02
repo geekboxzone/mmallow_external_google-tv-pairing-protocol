@@ -16,22 +16,22 @@
 
 package com.google.polo.ssl;
 
-import org.bouncycastle.asn1.ASN1InputStream;
-import org.bouncycastle.asn1.ASN1Sequence;
-import org.bouncycastle.asn1.x509.AuthorityKeyIdentifier;
-import org.bouncycastle.asn1.x509.BasicConstraints;
-import org.bouncycastle.asn1.x509.ExtendedKeyUsage;
-import org.bouncycastle.asn1.x509.GeneralName;
-import org.bouncycastle.asn1.x509.GeneralNames;
-import org.bouncycastle.asn1.x509.KeyPurposeId;
-import org.bouncycastle.asn1.x509.KeyUsage;
-import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
-import org.bouncycastle.asn1.x509.X509Extensions;
-import org.bouncycastle.asn1.x509.X509Name;
-import org.bouncycastle.x509.X509V1CertificateGenerator;
-import org.bouncycastle.x509.X509V3CertificateGenerator;
-import org.bouncycastle.x509.extension.AuthorityKeyIdentifierStructure;
-import org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
+import com.android.org.bouncycastle.asn1.ASN1InputStream;
+import com.android.org.bouncycastle.asn1.ASN1Sequence;
+import com.android.org.bouncycastle.asn1.x509.AuthorityKeyIdentifier;
+import com.android.org.bouncycastle.asn1.x509.BasicConstraints;
+import com.android.org.bouncycastle.asn1.x509.ExtendedKeyUsage;
+import com.android.org.bouncycastle.asn1.x509.GeneralName;
+import com.android.org.bouncycastle.asn1.x509.GeneralNames;
+import com.android.org.bouncycastle.asn1.x509.KeyPurposeId;
+import com.android.org.bouncycastle.asn1.x509.KeyUsage;
+import com.android.org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
+import com.android.org.bouncycastle.asn1.x509.X509Extensions;
+import com.android.org.bouncycastle.asn1.x509.X509Name;
+import com.android.org.bouncycastle.x509.X509V1CertificateGenerator;
+import com.android.org.bouncycastle.x509.X509V3CertificateGenerator;
+import com.android.org.bouncycastle.x509.extension.AuthorityKeyIdentifierStructure;
+import com.android.org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -97,7 +97,7 @@ public class SslUtil {
       String name)
         throws GeneralSecurityException {
     java.security.Security.addProvider(
-        new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        new com.android.org.bouncycastle.jce.provider.BouncyCastleProvider());
 
     Calendar calendar = Calendar.getInstance();
     calendar.set(2009, 0, 1);
@@ -140,7 +140,7 @@ public class SslUtil {
       String name, Date notBefore, Date notAfter, BigInteger serialNumber)
         throws GeneralSecurityException {
     java.security.Security.addProvider(
-        new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        new com.android.org.bouncycastle.jce.provider.BouncyCastleProvider());
 
     X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
     X509Name dnName = new X509Name(name);
