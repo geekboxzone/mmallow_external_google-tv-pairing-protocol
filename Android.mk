@@ -13,9 +13,8 @@ LOCAL_PROTOC_OPTIMIZE_TYPE := nano
 LOCAL_MODULE_TAGS := optional
 LOCAL_SDK_VERSION := current
 
-LOCAL_JAVA_LIBRARIES := \
-	bouncycastle \
-	conscrypt
+LOCAL_STATIC_JAVA_LIBRARIES := \
+    bouncycastle-unbundled
 
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
