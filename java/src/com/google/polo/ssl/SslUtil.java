@@ -25,13 +25,13 @@ import org.bouncycastle.asn1.x509.GeneralName;
 import org.bouncycastle.asn1.x509.GeneralNames;
 import org.bouncycastle.asn1.x509.KeyPurposeId;
 import org.bouncycastle.asn1.x509.KeyUsage;
+import org.bouncycastle.asn1.x509.SubjectKeyIdentifier;
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
 import org.bouncycastle.asn1.x509.X509Extensions;
 import org.bouncycastle.asn1.x509.X509Name;
 import org.bouncycastle.x509.X509V1CertificateGenerator;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
 import org.bouncycastle.x509.extension.AuthorityKeyIdentifierStructure;
-import org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -183,7 +183,7 @@ public class SslUtil {
     certGen.addExtension(X509Extensions.AuthorityKeyIdentifier, true,
         authIdentifier);
     certGen.addExtension(X509Extensions.SubjectKeyIdentifier, true,
-        new SubjectKeyIdentifierStructure(pair.getPublic()));
+            SubjectKeyIdentifier.getInstance(pair.getPublic().getEncoded()));
 
     certGen.addExtension(X509Extensions.SubjectAlternativeName, false, new GeneralNames(
         new GeneralName(GeneralName.rfc822Name, "googletv@test.test")));
