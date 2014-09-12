@@ -93,11 +93,10 @@ public class SslUtil {
    * @throws GeneralSecurityException  on error generating the certificate
    */
   @SuppressWarnings("deprecation")
+  @Deprecated
   public static X509Certificate generateX509V1Certificate(KeyPair pair,
       String name)
         throws GeneralSecurityException {
-    java.security.Security.addProvider(
-        new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
     Calendar calendar = Calendar.getInstance();
     calendar.set(2009, 0, 1);
@@ -118,9 +117,7 @@ public class SslUtil {
     certGen.setPublicKey(pair.getPublic());
     certGen.setSignatureAlgorithm("SHA256WithRSAEncryption");
     
-    // This method is deprecated, but Android Eclair does not provide the 
-    // generate() methods.
-    X509Certificate cert = certGen.generateX509Certificate(pair.getPrivate(), "BC");
+    X509Certificate cert = certGen.generate(pair.getPrivate());
     return cert;
   }
   
@@ -139,8 +136,6 @@ public class SslUtil {
   public static X509Certificate generateX509V3Certificate(KeyPair pair,
       String name, Date notBefore, Date notAfter, BigInteger serialNumber)
         throws GeneralSecurityException {
-    java.security.Security.addProvider(
-        new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
     X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
     X509Name dnName = new X509Name(name);
@@ -186,11 +181,9 @@ public class SslUtil {
             SubjectKeyIdentifier.getInstance(pair.getPublic().getEncoded()));
 
     certGen.addExtension(X509Extensions.SubjectAlternativeName, false, new GeneralNames(
-        new GeneralName(GeneralName.rfc822Name, "googletv@test.test")));
+        new GeneralName(GeneralName.rfc822Name, "android-tv-remote-support@google.com")));
 
-    // This method is deprecated, but Android Eclair does not provide the 
-    // generate() methods.
-    X509Certificate cert = certGen.generateX509Certificate(pair.getPrivate(), "BC");
+    X509Certificate cert = certGen.generate(pair.getPrivate());
     return cert;
   }
   
@@ -214,7 +207,7 @@ public class SslUtil {
    * @param serialNumber  the serial number
    * @return  a new {@link AuthorityKeyIdentifier}
    */
-  private static AuthorityKeyIdentifier createAuthorityKeyIdentifier(
+  static AuthorityKeyIdentifier createAuthorityKeyIdentifier(
       PublicKey publicKey, X509Name name, BigInteger serialNumber) {
     GeneralName genName = new GeneralName(name);
     SubjectPublicKeyInfo info;
